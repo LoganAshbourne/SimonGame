@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 using System.Threading;
+using System.Media;
 
 namespace SimonGame
 {
@@ -16,7 +17,7 @@ namespace SimonGame
     {
         // Global variables
         Random random = new Random();
-        int round = 1;
+        int buttonCounter;
 
         public GameScreen()
         {
@@ -26,6 +27,13 @@ namespace SimonGame
         private void GameScreen_Load(object sender, EventArgs e)
         {
             // Color shapes
+                // Green button transformation
+                GraphicsPath greenButtonPath = new GraphicsPath();
+                greenButtonPath.AddEllipse(0, 0, 400, 400);
+                greenButtonPath.AddEllipse(150, 150, 100, 100);
+                Region greenButtonRegion = new Region(greenButtonPath);
+                greenButton.Region = greenButtonRegion;
+
                 // Red button transformation
                 GraphicsPath redButtonPath = new GraphicsPath();
                 redButtonPath.AddEllipse(-200, 0, 400, 400);
@@ -45,80 +53,69 @@ namespace SimonGame
                 yellowButtonPath.AddEllipse(0, -200, 400, 400);
                 yellowButtonPath.AddEllipse(150, -50, 100, 100);
                 Region yellowButtonRegion = new Region(yellowButtonPath);
-                yellowButton.Region = yellowButtonRegion;
+                yellowButton.Region = yellowButtonRegion;               
 
-                // Green button transformation
-                GraphicsPath greenButtonPath = new GraphicsPath();
-                greenButtonPath.AddEllipse(0, 0, 400, 400);
-                greenButtonPath.AddEllipse(150, 150, 100, 100);
-                Region greenButtonRegion = new Region(greenButtonPath);
-                greenButton.Region = greenButtonRegion;
-
-            // Refresh screen
-            Refresh();
+            // Sound array
+            Form1.player[0] = new SoundPlayer(SimonGame.Properties.Resources.green);
+            Form1.player[1] = new SoundPlayer(SimonGame.Properties.Resources.red);
+            Form1.player[2] = new SoundPlayer(SimonGame.Properties.Resources.blue);
+            Form1.player[3] = new SoundPlayer(SimonGame.Properties.Resources.yellow);
+            Form1.player[4] = new SoundPlayer(SimonGame.Properties.Resources.mistake);
 
             // Clear pattern list
             Form1.gamePattern.Clear();
+            Form1.guessPattern.Clear();
 
-            // Wait 2 seconds
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
 
-            // Run computer turn custom method
-            ComputerTurn();
+            // Refresh screen
+            Refresh();
         }
 
         public void ComputerTurn()
         {
-            int randomNumber = random.Next(1, 2);
+            int randomNumber = random.Next(0, 1);
             Form1.gamePattern.Add(randomNumber);
 
             for (int i = 0; i < Form1.gamePattern.Count(); i++)
             {
-                if (Form1.gamePattern[i] == 1)
+                if (Form1.gamePattern[i] == 0)
                 {
-                    //TODO Play a sound
+                    //Play a green sound
+                    Form1.player[0].Play();
 
-                    greenButton.BackColor = Color.Green;
-                    Refresh();
+                    //TODO Make green button change colour
                     Thread.Sleep(1000);
                     greenButton.BackColor = Color.Lime;
-                    Refresh();
                     Thread.Sleep(1000);
                     greenButton.BackColor = Color.Green;
-                    Refresh();
+                }
+
+                else if (Form1.gamePattern[i] == 1)
+                {
+                    //Play a red sound
+                    Form1.player[1].Play();
+
+                    //TODO Make red button change colour
+                    redButton.BackColor = Color.Red;
                 }
 
                 else if (Form1.gamePattern[i] == 2)
                 {
-                    //TODO Play a sound
+                    //Play a blue sound
+                    Form1.player[2].Play();
 
-                    redButton.BackColor = Color.Maroon;
-                    Thread.Sleep(1000);
-                    redButton.BackColor = Color.Red;
-                    Thread.Sleep(1000);
-                    redButton.BackColor = Color.Maroon;
+                    //TODO Make blue button change colour
+                    blueButton.BackColor = Color.Blue;
                 }
 
                 else if (Form1.gamePattern[i] == 3)
                 {
-                    //TODO Play a sound
+                    //Play a yellow sound
+                    Form1.player[3].Play();
 
-                    blueButton.BackColor = Color.Navy;
-                    Thread.Sleep(1000);
-                    blueButton.BackColor = Color.Blue;
-                    Thread.Sleep(1000);
-                    blueButton.BackColor = Color.Navy;
-                }
-
-                else if (Form1.gamePattern[i] == 4)
-                {
-                    //TODO Play a sound
-
-                    yellowButton.BackColor = Color.Olive;
-                    Thread.Sleep(1000);
+                    //TODO Make yellow button change colour
                     yellowButton.BackColor = Color.Yellow;
-                    Thread.Sleep(1000);
-                    yellowButton.BackColor = Color.Olive;
                 }
 
                 Thread.Sleep(2000);
@@ -129,27 +126,27 @@ namespace SimonGame
 
         public void PlayerTurn()
         {
-            for (int i = 0; i < Form1.gamePattern.Count(); i++)
+            for (int i = 0; i < Form1.guessPattern.Count(); i++)
             {
-                if (Form1.guessPattern[i] != Form1.gamePattern[i])
+                if (Form1.guessPattern[i] == Form1.gamePattern[i])
                 {
-                    GameOver();
+                    ComputerTurn();
                 }
 
                 else
                 {
-                    ComputerTurn();
+                    GameOver();
                 }
             }
 
-            round++;
-            roundLabel.Text = "Round: " + round;
+            Form1.round++;
+            roundLabel.Text = "Round: " + Form1.round;
         }
 
         public void GameOver()
         {
-            //TODO Play gameover sound
-
+            //Play gameover sound
+            Form1.player[4].Play();
 
             // Wait 2 seconds
             Thread.Sleep(2000);
@@ -163,30 +160,69 @@ namespace SimonGame
 
         private void greenButton_Click(object sender, EventArgs e)
         {
-            Form1.guessPattern.Add(1);
+            Form1.player[0].Play();
+            Form1.guessPattern.Add(0);
 
-            PlayerTurn();
+            buttonCounter++;
+
+            if (Form1.gamePattern.Count() < buttonCounter)
+            {
+              PlayerTurn();
+
+              buttonCounter = 0;
+            }
+            
         }
 
         private void redButton_Click(object sender, EventArgs e)
         {
-            Form1.guessPattern.Add(2);
+            Form1.player[1].Play();
+            Form1.guessPattern.Add(1);
 
-            PlayerTurn();
+            buttonCounter++;
+
+            if (Form1.gamePattern.Count() < buttonCounter)
+            {
+                PlayerTurn();
+
+                buttonCounter = 0;
+            }
         }
 
         private void yellowButton_Click(object sender, EventArgs e)
         {
-            Form1.guessPattern.Add(3);
+            Form1.player[2].Play();
+            Form1.guessPattern.Add(2);
 
-            PlayerTurn();
+            buttonCounter++;
+
+            if (Form1.gamePattern.Count() < buttonCounter)
+            {
+                PlayerTurn();
+
+                buttonCounter = 0;
+            }
         }
 
         private void blueButton_Click(object sender, EventArgs e)
         {
-            Form1.guessPattern.Add(4);
+            Form1.player[3].Play();
+            Form1.guessPattern.Add(3);
 
-            PlayerTurn();
+            buttonCounter++;
+
+            if (Form1.gamePattern.Count() < buttonCounter)
+            {
+                PlayerTurn();
+
+                buttonCounter = 0;
+            }
+        }
+
+        private void GameScreen_Paint(object sender, PaintEventArgs e)
+        {
+            // Run computer turn custom method
+            ComputerTurn();
         }
     }
 }

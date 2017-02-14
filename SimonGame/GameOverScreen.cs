@@ -20,7 +20,7 @@ namespace SimonGame
         private void GameOverScreen_Load(object sender, EventArgs e)
         {
             //TODO Show pattern length player reached
-
+            patternLengthLabel.Text += Form1.round;
         }
 
         private void closeButton_Click(object sender, EventArgs e)

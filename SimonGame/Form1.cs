@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 
 namespace SimonGame
 {
@@ -15,6 +16,8 @@ namespace SimonGame
         // Global lists
         public static List<int> gamePattern = new List<int>();
         public static List<int> guessPattern = new List<int>();
+        public static SoundPlayer[] player = new SoundPlayer[5];
+        public static int round = 0;
 
         public Form1()
         {

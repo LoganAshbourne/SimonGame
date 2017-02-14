@@ -39,7 +39,6 @@
             // 
             this.redButton.BackColor = System.Drawing.Color.Maroon;
             this.redButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.redButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
             this.redButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.redButton.Location = new System.Drawing.Point(252, 46);
             this.redButton.Name = "redButton";
@@ -52,7 +51,6 @@
             // 
             this.greenButton.BackColor = System.Drawing.Color.Green;
             this.greenButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.greenButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Lime;
             this.greenButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.greenButton.Location = new System.Drawing.Point(46, 46);
             this.greenButton.Name = "greenButton";
@@ -65,7 +63,6 @@
             // 
             this.yellowButton.BackColor = System.Drawing.Color.Olive;
             this.yellowButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.yellowButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Yellow;
             this.yellowButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.yellowButton.Location = new System.Drawing.Point(46, 252);
             this.yellowButton.Name = "yellowButton";
@@ -78,7 +75,6 @@
             // 
             this.blueButton.BackColor = System.Drawing.Color.Navy;
             this.blueButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.blueButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Blue;
             this.blueButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.blueButton.Location = new System.Drawing.Point(252, 252);
             this.blueButton.Name = "blueButton";
@@ -96,7 +92,7 @@
             this.roundLabel.Name = "roundLabel";
             this.roundLabel.Size = new System.Drawing.Size(406, 43);
             this.roundLabel.TabIndex = 4;
-            this.roundLabel.Text = "Round: 1";
+            this.roundLabel.Text = "Round: 0";
             this.roundLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // GameScreen
@@ -112,6 +108,7 @@
             this.Name = "GameScreen";
             this.Size = new System.Drawing.Size(500, 500);
             this.Load += new System.EventHandler(this.GameScreen_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.GameScreen_Paint);
             this.ResumeLayout(false);
 
         }
