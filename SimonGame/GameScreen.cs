@@ -124,7 +124,7 @@ namespace SimonGame
                 Thread.Sleep(2000);
             }
 
-            Form1.guessPattern.Clear();
+            Form1.guessPattern.Clear(); 
         }
 
         public void PlayerTurn()
