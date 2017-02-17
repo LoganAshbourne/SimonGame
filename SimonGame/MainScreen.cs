@@ -22,10 +22,9 @@ namespace SimonGame
         {
             // Change to game screen
             Form f = this.FindForm();
-            GameScreen gs = new GameScreen();
-            f.Controls.Add(gs);
             f.Controls.Remove(this);
-            
+            GameScreen gs = new GameScreen();
+            f.Controls.Add(gs);       
         }
 
         private void exitButton_Click(object sender, EventArgs e)

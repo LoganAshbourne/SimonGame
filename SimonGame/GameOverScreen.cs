@@ -19,17 +19,18 @@ namespace SimonGame
 
         private void GameOverScreen_Load(object sender, EventArgs e)
         {
-            //TODO Show pattern length player reached
+            //Show pattern length player reached
             patternLengthLabel.Text += Form1.round;
         }
 
         private void closeButton_Click(object sender, EventArgs e)
         {
-            // Change to main screen
+            //Change to main screen
             Form f = this.FindForm();
+            f.Controls.Remove(this);
             MainScreen ms = new MainScreen();
             f.Controls.Add(ms);
-            f.Controls.Remove(this);
+            
         }
     }
 }

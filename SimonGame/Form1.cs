@@ -1,4 +1,10 @@
-﻿using System;
+﻿/* Program: Simon Game
+ * Created by: Logan Ashbourne
+ * Date: 2017-02-21
+ * Desc: A pattern color game that tests your memorization skills
+ */
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;

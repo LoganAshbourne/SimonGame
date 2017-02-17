@@ -92,7 +92,7 @@
             this.roundLabel.Name = "roundLabel";
             this.roundLabel.Size = new System.Drawing.Size(406, 43);
             this.roundLabel.TabIndex = 4;
-            this.roundLabel.Text = "Round: 0";
+            this.roundLabel.Text = "Round: 1";
             this.roundLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // GameScreen
@@ -108,7 +108,6 @@
             this.Name = "GameScreen";
             this.Size = new System.Drawing.Size(500, 500);
             this.Load += new System.EventHandler(this.GameScreen_Load);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.GameScreen_Paint);
             this.ResumeLayout(false);
 
         }

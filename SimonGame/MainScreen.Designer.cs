@@ -31,6 +31,8 @@
             this.newGameButton = new System.Windows.Forms.Button();
             this.exitButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.simonGamePicture = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.simonGamePicture)).BeginInit();
             this.SuspendLayout();
             // 
             // newGameButton
@@ -80,6 +82,17 @@
             this.label1.Text = "Simon Game";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // simonGamePicture
+            // 
+            this.simonGamePicture.BackColor = System.Drawing.Color.Transparent;
+            this.simonGamePicture.BackgroundImage = global::SimonGame.Properties.Resources.SimonSaysImage;
+            this.simonGamePicture.InitialImage = null;
+            this.simonGamePicture.Location = new System.Drawing.Point(0, 0);
+            this.simonGamePicture.Name = "simonGamePicture";
+            this.simonGamePicture.Size = new System.Drawing.Size(500, 500);
+            this.simonGamePicture.TabIndex = 3;
+            this.simonGamePicture.TabStop = false;
+            // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -88,9 +101,11 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.newGameButton);
+            this.Controls.Add(this.simonGamePicture);
             this.Name = "MainScreen";
             this.Size = new System.Drawing.Size(500, 500);
             this.Load += new System.EventHandler(this.MainScreen_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.simonGamePicture)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -100,5 +115,6 @@
         private System.Windows.Forms.Button newGameButton;
         private System.Windows.Forms.Button exitButton;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox simonGamePicture;
     }
 }
