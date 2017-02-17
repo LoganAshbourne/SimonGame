@@ -18,34 +18,35 @@ namespace SimonGame
             InitializeComponent();
         }
 
+        //Change to game screen
         private void newGameButton_Click(object sender, EventArgs e)
         {
-            // Change to game screen
+            //Change to game screen
             Form f = this.FindForm();
             f.Controls.Remove(this);
             GameScreen gs = new GameScreen();
             f.Controls.Add(gs);       
         }
 
+        //Close game
         private void exitButton_Click(object sender, EventArgs e)
         {
-            // Close game
+            //Close game
             Application.Exit();
         }
 
+        //Button shape changes
         private void MainScreen_Load(object sender, EventArgs e)
         {
-            // Exit button
+            //Exit button
             GraphicsPath exitButtonPath = new GraphicsPath();
             exitButtonPath.AddEllipse(-175, -75, 400, 150);
-            Region exitButtonRegion = new Region(exitButtonPath);
-            exitButton.Region = exitButtonRegion;
+            exitButton.Region = new Region(exitButtonPath);
 
-            // New game button
+            //New game button
             GraphicsPath newGameButtonPath = new GraphicsPath();
             newGameButtonPath.AddEllipse(-175, 0, 400, 150);
-            Region newGameButtonRegion = new Region(newGameButtonPath);
-            newGameButton.Region = newGameButtonRegion;
+            newGameButton.Region = new Region(newGameButtonPath);
         }
     }
 }

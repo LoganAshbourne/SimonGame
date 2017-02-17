@@ -17,12 +17,14 @@ namespace SimonGame
             InitializeComponent();
         }
 
+        //Calculate pattern length, and show
         private void GameOverScreen_Load(object sender, EventArgs e)
         {
-            //Show pattern length player reached
+            //Calculate pattern length, and show
             patternLengthLabel.Text += Form1.round;
         }
 
+        //Change to main screen
         private void closeButton_Click(object sender, EventArgs e)
         {
             //Change to main screen

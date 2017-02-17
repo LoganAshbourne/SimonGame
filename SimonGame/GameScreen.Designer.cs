@@ -88,9 +88,9 @@
             this.roundLabel.BackColor = System.Drawing.Color.Black;
             this.roundLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.roundLabel.ForeColor = System.Drawing.Color.White;
-            this.roundLabel.Location = new System.Drawing.Point(0, 0);
+            this.roundLabel.Location = new System.Drawing.Point(46, 0);
             this.roundLabel.Name = "roundLabel";
-            this.roundLabel.Size = new System.Drawing.Size(500, 43);
+            this.roundLabel.Size = new System.Drawing.Size(406, 43);
             this.roundLabel.TabIndex = 5;
             this.roundLabel.Text = "Round: 1";
             this.roundLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

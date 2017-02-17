@@ -15,7 +15,7 @@ namespace SimonGame
 {
     public partial class GameScreen : UserControl
     {
-        // Global variables
+        //Global variables
         int buttonCounter = 0;
 
         public GameScreen()
@@ -23,6 +23,7 @@ namespace SimonGame
             InitializeComponent();
         }
 
+        //Shape change, and clear lists
         private void GameScreen_Load(object sender, EventArgs e)
         {
             //Color shapes
@@ -30,29 +31,25 @@ namespace SimonGame
             GraphicsPath greenButtonPath = new GraphicsPath();
             greenButtonPath.AddEllipse(0, 0, 400, 400);
             greenButtonPath.AddEllipse(150, 150, 100, 100);
-            Region greenButtonRegion = new Region(greenButtonPath);
-            greenButton.Region = greenButtonRegion;
+            greenButton.Region = new Region(greenButtonPath);
 
             //Red button transformation
             GraphicsPath redButtonPath = new GraphicsPath();
             redButtonPath.AddEllipse(-200, 0, 400, 400);
             redButtonPath.AddEllipse(-50, 150, 100, 100);
-            Region redButtonRegion = new Region(redButtonPath);
-            redButton.Region = redButtonRegion;
+            redButton.Region = new Region(redButtonPath);
 
             //Blue button transformation
             GraphicsPath blueButtonPath = new GraphicsPath();
             blueButtonPath.AddEllipse(-200, -200, 400, 400);
             blueButtonPath.AddEllipse(-50, -50, 100, 100);
-            Region blueButtonRegion = new Region(blueButtonPath);
-            blueButton.Region = blueButtonRegion;
+            blueButton.Region = new Region(blueButtonPath);
 
             //Yellow button transformation
             GraphicsPath yellowButtonPath = new GraphicsPath();
             yellowButtonPath.AddEllipse(0, -200, 400, 400);
             yellowButtonPath.AddEllipse(150, -50, 100, 100);
-            Region yellowButtonRegion = new Region(yellowButtonPath);
-            yellowButton.Region = yellowButtonRegion;
+            yellowButton.Region = new Region(yellowButtonPath);
 
             //Sound array
             Form1.player[0] = new SoundPlayer(SimonGame.Properties.Resources.green);
@@ -61,9 +58,10 @@ namespace SimonGame
             Form1.player[3] = new SoundPlayer(SimonGame.Properties.Resources.yellow);
             Form1.player[4] = new SoundPlayer(SimonGame.Properties.Resources.mistake);
 
-            //Clear pattern lists
+            //Clear pattern lists and round
             Form1.gamePattern.Clear();
             Form1.guessPattern.Clear();
+            Form1.round = 0;
 
             //Refresh screen
             Refresh();
@@ -75,6 +73,7 @@ namespace SimonGame
             ComputerTurn();
         }
 
+        //Add color to game pattern, and flash button
         public void ComputerTurn()
         {
             //Get a random number between 0 and 3, then add it to game pattern
@@ -82,74 +81,70 @@ namespace SimonGame
             int randomNumber = random.Next(0, 4);
             Form1.gamePattern.Add(randomNumber);
 
+            //Check random number for color displayed
             for (int i = 0; i < Form1.gamePattern.Count(); i++)
             {
-                //Check if random number was 0 for green
-                if (Form1.gamePattern[i] == 0)
+                switch (Form1.gamePattern[i])
                 {
-                    //Make green button change colour
-                    Thread.Sleep(500);
-                    greenButton.BackColor = Color.Lime;
-                    Refresh();
+                    case 0:
+                        //Make green button change colour
+                        Thread.Sleep(500);
+                        greenButton.BackColor = Color.Lime;
+                        Refresh();
 
-                    //Play a green sound
-                    Form1.player[0].Play();
+                        //Play a green sound
+                        Form1.player[0].Play();
 
-                    //Make green button change back
-                    Thread.Sleep(750);
-                    greenButton.BackColor = Color.Green;
-                    Refresh();
-                }
+                        //Make green button change back
+                        Thread.Sleep(750);
+                        greenButton.BackColor = Color.Green;
+                        Refresh();
+                        break;
 
-                //Check if random number was 1 for red
-                else if (Form1.gamePattern[i] == 1)
-                {
-                    //Make red button change brighter
-                    Thread.Sleep(500);
-                    redButton.BackColor = Color.Red;
-                    Refresh();
+                    case 1:
+                        //Make red button change brighter
+                        Thread.Sleep(500);
+                        redButton.BackColor = Color.Red;
+                        Refresh();
 
-                    //Play a red sound
-                    Form1.player[1].Play();
+                        //Play a red sound
+                        Form1.player[1].Play();
 
-                    // Make red button change back
-                    Thread.Sleep(750);
-                    redButton.BackColor = Color.Maroon;
-                    Refresh();
-                }
+                        // Make red button change back
+                        Thread.Sleep(750);
+                        redButton.BackColor = Color.Maroon;
+                        Refresh();
+                        break;
 
-                //Check if random number was 2 for blue
-                else if (Form1.gamePattern[i] == 2)
-                {
-                    //Make blue button change brighter
-                    Thread.Sleep(500);
-                    blueButton.BackColor = Color.Blue;
-                    Refresh();
+                    case 2:
+                        //Make blue button change brighter
+                        Thread.Sleep(500);
+                        blueButton.BackColor = Color.Blue;
+                        Refresh();
 
-                    //Play a blue sound
-                    Form1.player[2].Play();
+                        //Play a blue sound
+                        Form1.player[2].Play();
 
-                    // Make blue button change back
-                    Thread.Sleep(750);
-                    blueButton.BackColor = Color.Navy;
-                    Refresh();
-                }
+                        // Make blue button change back
+                        Thread.Sleep(750);
+                        blueButton.BackColor = Color.Navy;
+                        Refresh();
+                        break;
 
-                //Check if random number was 3 for yellow
-                else if (Form1.gamePattern[i] == 3)
-                {
-                    //Make yellow button change brighter
-                    Thread.Sleep(500);
-                    yellowButton.BackColor = Color.Yellow;
-                    Refresh();
+                    case 3:
+                        //Make yellow button change brighter
+                        Thread.Sleep(500);
+                        yellowButton.BackColor = Color.Yellow;
+                        Refresh();
 
-                    //Play a yellow sound
-                    Form1.player[3].Play();
+                        //Play a yellow sound
+                        Form1.player[3].Play();
 
-                    //Make yellow button change back
-                    Thread.Sleep(750);
-                    yellowButton.BackColor = Color.Olive;
-                    Refresh();
+                        //Make yellow button change back
+                        Thread.Sleep(750);
+                        yellowButton.BackColor = Color.Olive;
+                        Refresh();
+                        break;
                 }
             }
 
@@ -157,6 +152,7 @@ namespace SimonGame
             Form1.guessPattern.Clear();
         }
 
+        //Check if guess was correct, and increase rounds
         public void PlayerTurn()
         {
             //Check if guess was correct
@@ -164,7 +160,7 @@ namespace SimonGame
             {
                 //Check if round is over, then move to next round
                 if (Form1.guessPattern.Count() == Form1.gamePattern.Count())
-                {           
+                {
                     //Add a round       
                     Form1.round++;
                     roundLabel.Text = "Round: " + (Form1.round + 1);
@@ -185,15 +181,16 @@ namespace SimonGame
             }
         }
 
+        //Play sound, and go to gameover screen
         public void GameOver()
         {
             //Play gameover sound
             Form1.player[4].Play();
 
-            // Wait 2 seconds
+            //Wait 2 seconds
             Thread.Sleep(2000);
 
-            // Change to game over screen
+            //Change to game over screen
             Form f = FindForm();
             f.Controls.Remove(this);
             GameOverScreen gos = new GameOverScreen();
@@ -201,6 +198,7 @@ namespace SimonGame
 
         }
 
+        //Play sound, and add green to guess pattern
         private void greenButton_Click(object sender, EventArgs e)
         {
             //Play sound then add to "green" to guess list
@@ -209,9 +207,10 @@ namespace SimonGame
 
             //Check if guess was correct
             PlayerTurn();
-            buttonCounter++;                  
+            buttonCounter++;
         }
 
+        //Play sound, and add red to guess pattern
         private void redButton_Click(object sender, EventArgs e)
         {
             //Play sound then add to "red" to guess list
@@ -220,9 +219,10 @@ namespace SimonGame
 
             //Check if guess was correct
             PlayerTurn();
-            buttonCounter++;         
+            buttonCounter++;
         }
 
+        //Play sound, and add blue to guess pattern
         private void blueButton_Click(object sender, EventArgs e)
         {
             //Play sound then add to "blue" to guess list
@@ -234,6 +234,7 @@ namespace SimonGame
             buttonCounter++;
         }
 
+        //Play sound, and add yellow to guess pattern
         private void yellowButton_Click(object sender, EventArgs e)
         {
             //Play sound then add to "yellow" to guess list

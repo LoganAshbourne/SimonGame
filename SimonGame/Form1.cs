@@ -19,9 +19,10 @@ namespace SimonGame
 {
     public partial class Form1 : Form
     {
-        // Global lists
+        //Public global lists
         public static List<int> gamePattern = new List<int>();
         public static List<int> guessPattern = new List<int>();
+        public static List<Button> buttonList = new List<Button>();
         public static SoundPlayer[] player = new SoundPlayer[5];
         public static int round = 0;
 
@@ -30,9 +31,10 @@ namespace SimonGame
             InitializeComponent();
         }
 
+        //Start main screen
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Start main screen
+            //Start main screen
             MainScreen ms = new MainScreen();
             this.Controls.Add(ms);
         }
