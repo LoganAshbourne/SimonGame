@@ -37,7 +37,7 @@
             // 
             this.gameOverLabel.BackColor = System.Drawing.Color.Transparent;
             this.gameOverLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.gameOverLabel.Font = new System.Drawing.Font("Monotype Corsiva", 72F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gameOverLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gameOverLabel.ForeColor = System.Drawing.Color.Red;
             this.gameOverLabel.Location = new System.Drawing.Point(0, 0);
             this.gameOverLabel.Name = "gameOverLabel";
@@ -48,7 +48,7 @@
             // 
             // patternLengthLabel
             // 
-            this.patternLengthLabel.Font = new System.Drawing.Font("Monotype Corsiva", 36F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.patternLengthLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.patternLengthLabel.ForeColor = System.Drawing.Color.Red;
             this.patternLengthLabel.Location = new System.Drawing.Point(0, 181);
             this.patternLengthLabel.Name = "patternLengthLabel";
@@ -62,7 +62,7 @@
             this.closeButton.BackColor = System.Drawing.Color.Maroon;
             this.closeButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.closeButton.Font = new System.Drawing.Font("Monotype Corsiva", 21.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.closeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.closeButton.Location = new System.Drawing.Point(175, 375);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(150, 50);

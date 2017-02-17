@@ -16,7 +16,6 @@ namespace SimonGame
     public partial class GameScreen : UserControl
     {
         // Global variables
-        Random random = new Random();
         int buttonCounter = 0;
 
         public GameScreen()
@@ -72,13 +71,14 @@ namespace SimonGame
             //Wait 1 second
             Thread.Sleep(1000);
 
-            //
+            //Add a color to game pattern
             ComputerTurn();
         }
 
         public void ComputerTurn()
         {
             //Get a random number between 0 and 3, then add it to game pattern
+            Random random = new Random();
             int randomNumber = random.Next(0, 4);
             Form1.gamePattern.Add(randomNumber);
 
@@ -159,20 +159,26 @@ namespace SimonGame
 
         public void PlayerTurn()
         {
-            // Check if guess was correct
+            //Check if guess was correct
             if (Form1.guessPattern[buttonCounter] == Form1.gamePattern[buttonCounter])
             {
-                // Check if round is over, then move to next round
+                //Check if round is over, then move to next round
                 if (Form1.guessPattern.Count() == Form1.gamePattern.Count())
-                {                  
+                {           
+                    //Add a round       
                     Form1.round++;
                     roundLabel.Text = "Round: " + (Form1.round + 1);
+
+                    //Wait 1 second
+                    Thread.Sleep(1000);
+
+                    //Add another color to game pattern, and clear guess pattern
                     ComputerTurn();
                     buttonCounter = -1;
                 }
             }
 
-            // If guess was incorrect, play GameOver method
+            //If guess was incorrect, go to gameover screen
             else
             {
                 GameOver();
@@ -197,36 +203,44 @@ namespace SimonGame
 
         private void greenButton_Click(object sender, EventArgs e)
         {
+            //Play sound then add to "green" to guess list
             Form1.player[0].Play();
             Form1.guessPattern.Add(0);
 
+            //Check if guess was correct
             PlayerTurn();
             buttonCounter++;                  
         }
 
         private void redButton_Click(object sender, EventArgs e)
         {
+            //Play sound then add to "red" to guess list
             Form1.player[1].Play();
             Form1.guessPattern.Add(1);
 
+            //Check if guess was correct
             PlayerTurn();
             buttonCounter++;         
         }
 
         private void blueButton_Click(object sender, EventArgs e)
         {
+            //Play sound then add to "blue" to guess list
             Form1.player[2].Play();
             Form1.guessPattern.Add(2);
 
+            //Check if guess was correct
             PlayerTurn();
             buttonCounter++;
         }
 
         private void yellowButton_Click(object sender, EventArgs e)
         {
+            //Play sound then add to "yellow" to guess list
             Form1.player[3].Play();
             Form1.guessPattern.Add(3);
 
+            //Check if guess was correct
             PlayerTurn();
             buttonCounter++;
         }
