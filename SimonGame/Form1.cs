@@ -33,7 +33,6 @@ namespace SimonGame
         //Start main screen
         private void Form1_Load(object sender, EventArgs e)
         {
-            //Start main screen
             MainScreen ms = new MainScreen();
             this.Controls.Add(ms);
         }

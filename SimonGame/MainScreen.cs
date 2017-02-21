@@ -21,7 +21,6 @@ namespace SimonGame
         //Change to game screen
         private void newGameButton_Click(object sender, EventArgs e)
         {
-            //Change to game screen
             Form f = this.FindForm();
             f.Controls.Remove(this);
             GameScreen gs = new GameScreen();
@@ -31,7 +30,6 @@ namespace SimonGame
         //Close game
         private void exitButton_Click(object sender, EventArgs e)
         {
-            //Close game
             Application.Exit();
         }
 
