@@ -22,7 +22,6 @@ namespace SimonGame
         //Public global lists
         public static List<int> gamePattern = new List<int>();
         public static List<int> guessPattern = new List<int>();
-        public static List<Button> buttonList = new List<Button>();
         public static SoundPlayer[] player = new SoundPlayer[5];
         public static int round = 0;
 
